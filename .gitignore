@@ -1,3 +1,7 @@
+# static and media
+static/
+media/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -109,6 +113,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+env_dev/
 
 # Spyder project settings
 .spyderproject
