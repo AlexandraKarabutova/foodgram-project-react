@@ -37,9 +37,6 @@ from users.models import Subscription, User
 class TokenCreateView(views.TokenCreateView):
     def _action(self, serializer):
         response = super()._action(serializer)
-        # По ТЗ нужен ответ 201, в то время как Djoser возвращает 200
-        if response.status_code == status.HTTP_200_OK:
-            response.status_code = status.HTTP_201_CREATED
         return response
 
 
@@ -117,8 +114,6 @@ class IngredientViewSet(viewsets.ReadOnlyModelViewSet):
             qs_contains = queryset.filter(
                 ~Q(name__istartswith=name) & Q(name__icontains=name)
             )
-            # преобразуем в list, чтобы результирующий queryset
-            # имел первоначальную сортировку
             queryset = list(qs_starts) + list(qs_contains)
         return queryset
 

@@ -90,13 +90,13 @@ class SubscriptionSerializer(serializers.ModelSerializer):
 class TagSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tag
-        fields = "__all__"
+        fields = ("name", "color", "slug",)
 
 
 class IngredientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ingredient
-        fields = "__all__"
+        fields = ("name", "measurement_unit",)
 
 
 class IngredientInRecipeSerializer(serializers.ModelSerializer):
@@ -202,27 +202,21 @@ class RecipeSerializer(serializers.ModelSerializer):
         return super().update(instance, validated_data)
 
     def validate(self, attrs):
-        # - хотя бы один тег выбран
         if len(attrs["tags"]) == 0:
             raise serializers.ValidationError("Должен быть выбран хотя бы один тег.")
-        # - теги уникальны
         if len(attrs["tags"]) != len(set(attrs["tags"])):
             raise serializers.ValidationError("Теги должны быть уникальны.")
-        # - хотя бы один ингредиент выбран
         if len(attrs["ingredientinrecipe_set"]) == 0:
             raise serializers.ValidationError(
                 "Должен быть выбран хотя бы один ингредиент."
             )
-        # - ингредиенты уникальны
         ingredients = attrs["ingredientinrecipe_set"]
         if len(ingredients) != len(set(obj["ingredient"] for obj in ingredients)):
             raise serializers.ValidationError("Ингредиенты должны быть уникальны.")
-        # - кол-во больше нуля
         if any(obj["amount"] <= 0 for obj in ingredients):
             raise serializers.ValidationError(
                 "Количество игредиента должно быть больше нуля."
             )
-        # - время больше нуля
         if attrs["cooking_time"] <= 0:
             raise serializers.ValidationError(
                 "Время приготовления должно быть больше нуля."
