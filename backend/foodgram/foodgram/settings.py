@@ -3,15 +3,14 @@ from django.core.management.utils import get_random_secret_key
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-DB_ENGINE = os.getenv("DB_ENGINE", default="django.db.backends.sqlite3")
-DB_NAME = os.getenv("DB_NAME", default=os.path.join(BASE_DIR, "db.sqlite3"))
+DB_ENGINE = os.getenv("DB_ENGINE", default="django.db.backends.postgresql")
+DB_NAME = os.getenv("DB_NAME", default="postgres")  # os.path.join(BASE_DIR, "db.sqlite3")
 DB_USER = os.getenv("POSTGRES_USER", default="postgres")
-DB_PASSWORD = os.getenv("POSTGRES_PASSWORD", default="password1")
+DB_PASSWORD = os.getenv("POSTGRES_PASSWORD", default="postgres")
 DB_HOST = os.getenv("DB_HOST", default="db")
 DB_PORT = os.getenv("DB_PORT", default="5432")
 
 # SECRET_KEY = os.getenv("SECRET_KEY")
-
 SECRET_KEY = get_random_secret_key()
 
 DEBUG = False
