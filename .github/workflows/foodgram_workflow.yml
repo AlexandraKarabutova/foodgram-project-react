@@ -23,6 +23,7 @@ jobs:
       run: |
         python -m flake8 backend/foodgram
 
+
   build_and_push_to_docker_hub:
     runs-on: ubuntu-latest
     needs: tests
@@ -53,7 +54,8 @@ jobs:
        with:
          context: frontend/
          push: true
-         tags: ${{ secrets.DOCKER_USERNAME }}/foodgram_frontend:latest
+         tags: ${{ secrets.DOCKER_USERNAME }}/foodgram_frontend:latest 
+
 
   deploy:
     runs-on: ubuntu-latest
