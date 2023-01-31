@@ -20,7 +20,7 @@ jobs:
 
     - name: Test flake8
       run: |
-        flake8 .
+        python -m flake8 backend/foodgram
 
 
   # build_and_push_to_docker_hub:
