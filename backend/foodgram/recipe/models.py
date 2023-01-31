@@ -66,8 +66,8 @@ class Ingredient(models.Model):
     measurement_unit = models.CharField("Единица измерения", max_length=10)
 
     class Meta:
-        verbose_name = "Ингридиент"
-        verbose_name_plural = "Ингридиенты"
+        verbose_name = "Ингредиент"
+        verbose_name_plural = "Ингредиенты"
 
     def __str__(self):
         return f"{self.name}, {self.measurement_unit}."
@@ -117,7 +117,7 @@ class Recipe(models.Model):
 class IngredientRecipe(models.Model):
     ingredient = models.ForeignKey(
         Ingredient,
-        verbose_name="Ингридиент",
+        verbose_name="Ингредиент",
         related_name="amount",
         on_delete=models.CASCADE,
     )
@@ -132,14 +132,14 @@ class IngredientRecipe(models.Model):
         validators=(
             validators.MinValueValidator(
                 1,
-                message="Мин. количество ингридиентов 1"),
+                message="Мин. количество ингредиентов 1"),
         ),
         verbose_name="Количество",
     )
 
     class Meta:
-        verbose_name = "Ингридиенты рецепта"
-        verbose_name_plural = "Ингридиенты рецептов"
+        verbose_name = "Ингредиенты рецепта"
+        verbose_name_plural = "Ингредиенты рецептов"
         constraints = [
             models.UniqueConstraint(
                 fields=["recipe", "ingredient"], name="unique ingredient"

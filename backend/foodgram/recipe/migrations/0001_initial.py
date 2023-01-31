@@ -137,8 +137,8 @@ class Migration(migrations.Migration):
                 ),
             ],
             options={
-                "verbose_name": "Ингридиент",
-                "verbose_name_plural": "Ингридиенты",
+                "verbose_name": "Ингредиент",
+                "verbose_name_plural": "Ингредиенты",
             },
         ),
         migrations.CreateModel(
@@ -159,7 +159,7 @@ class Migration(migrations.Migration):
                         default=1,
                         validators=[
                             django.core.validators.MinValueValidator(
-                                1, message="Мин. количество ингридиентов 1"
+                                1, message="Мин. количество ингредиентов 1"
                             )
                         ],
                         verbose_name="Количество",
@@ -171,13 +171,13 @@ class Migration(migrations.Migration):
                         on_delete=django.db.models.deletion.CASCADE,
                         related_name="amount",
                         to="recipe.Ingredient",
-                        verbose_name="Ингридиент",
+                        verbose_name="Ингредиент",
                     ),
                 ),
             ],
             options={
-                "verbose_name": "Ингридиенты рецепта",
-                "verbose_name_plural": "Ингридиенты рецептов",
+                "verbose_name": "Ингредиенты рецепта",
+                "verbose_name_plural": "Ингредиенты рецептов",
             },
         ),
         migrations.CreateModel(

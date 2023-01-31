@@ -174,7 +174,7 @@ class RecipesViewSet(viewsets.ModelViewSet):
 
 
 class IngredientViewSet(viewsets.ModelViewSet):
-    """Чтение ингридиентов и фильтрация."""
+    """Чтение ингредиентов и фильтрация."""
 
     queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
