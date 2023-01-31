@@ -20,7 +20,7 @@ from recipe.models import (
 ERR_MSG = "Не удается войти в систему с предоставленными учетными данными."
 
 
-class TokenSerializer(serializers.Serializer):  # noqa
+class TokenSerializer(serializers.Serializer):
     email = serializers.CharField(label="Email", write_only=True)
     password = serializers.CharField(
         label="Пароль",
@@ -395,7 +395,7 @@ class FollowSerializer(serializers.ModelSerializer):
         return obj.author.recipe_user.all().count()
 
 
-class UserPasswordSerializer(serializers.Serializer):  # noqa
+class UserPasswordSerializer(serializers.Serializer):
     new_password = serializers.CharField(label="Новый пароль")
     current_password = serializers.CharField(label="Текущий пароль")
 
